@@ -22,5 +22,13 @@ int main(int argc, char const *argv[])
   serv_addr.sin_family = AF_INET; // IPv4
   serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);  // 모든 IP에서 오는 연결 수락
   serv_addr.sin_port = htons(atoi(argv[1]));  // 포트번호
+
+  // 바인드
+  if (bind(serv_sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) == -1)  // serv_sock 소켓에 IP주소와 포트를 붙임
+  {
+    perror("bind() error");
+    exit(1);
+  }
+  
   return 0;
 }
