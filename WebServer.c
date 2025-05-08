@@ -30,5 +30,11 @@ int main(int argc, char const *argv[])
     exit(1);
   }
   
+  // 리슨
+  if (listen(serv_sock, 5) == -1) { // 클라이언트 대기열(최대 5개)
+    perror("listen() error");
+    exit(1);
+  }
+
   return 0;
 }
